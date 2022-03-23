@@ -43,13 +43,16 @@ def predict():
 
     prediction = model.predict(dfM)
     if (prediction[0]==0):
-        res="Approved", prediction[0]
+        res= {
+            "Status":"Approved"
+        }
 
     if (prediction[0]==1):
-        res="Rejected", prediction[0]
-
+        res= {
+            "Status":"Rejected"
+        }
     # return render_template("index.html", prediction_text = res)
-    return jsonify(res)
+    return jsonify({res})
 
 if __name__ == "__main__":
     app.run(debug=True)     
