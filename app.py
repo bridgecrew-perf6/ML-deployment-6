@@ -52,7 +52,7 @@ def predict():
             "Status":"Rejected"
         }
     # return render_template("index.html", prediction_text = res)
-    return jsonify({res})
+    return jsonify(res)
 
 if __name__ == "__main__":
     app.run(debug=True)     
