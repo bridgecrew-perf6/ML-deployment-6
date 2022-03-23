@@ -21,14 +21,14 @@ df['Profession']=leProfession.fit(df['Profession'])
 # df['Profession']=leProfession.transform(df['Profession'])
 
 # Create flask app
-flask_app = Flask(__name__)
+app = Flask(__name__)
 model = pickle.load(open("m1.pkl", "rb"))
 
-@flask_app.route("/")
+@app.route("/")
 def Home():
     return render_template("index.html")
 
-@flask_app.route("/predict", methods = ["POST"])
+@app.route("/predict", methods = ["POST"])
 def predict():
     int_features = [x for x in request.form.values()]
     # df['Income'], df['Age'],df['Experience'],df['Married/Single'], df['House_Ownership'],df['Car_Ownership'], df['Profession'], df['CURRENT_JOB_YRS'], df['CURRENT_HOUSE_YRS']=int_features
@@ -56,4 +56,4 @@ def predict():
     return render_template("index.html", prediction_text = res)
 
 if __name__ == "__main__":
-    flask_app.run(debug=True)
+    app.run(debug=True)
