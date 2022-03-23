@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  
+</head>
+
+<body>
+ <div class="login">
+	<h1>Flower Class Prediction</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+      	<!-- <input type="text" name="Sepal_Length" placeholder="Sepal_Length" required="required" />
+        <input type="text" name="Sepal_Width" placeholder="Sepal_Width" required="required" />
+		    <input type="text" name="Petal_Length" placeholder="Petal_Length" required="required" />
+		    <input type="text" name="Petal_Width" placeholder="Petal_Width" required="required" /> -->
+        <br>
+            Income: <input type="number" name="Income", placeholder="Enter Income" required="required"/>
+            <br><br>
+            Age: <input type="number" name="Age", placeholder="Enter Age" required="required"/>
+            <br><br>
+            Experience: <input type="number" name="Experience", placeholder="Enter Experience" required="required"/>
+            <br><br>
+            Married/Single: <input type="text" name="Married/Single", placeholder="Enter Married/Single" required="required"/>
+            <br><br>
+            House_Ownership: <input type="text" name="House_Ownership", placeholder="Enter House_Ownership" required="required"/>
+            <br><br>
+            Car_Ownership: <input type="text" name="Car_Ownership", placeholder="Enter Car_Ownership" required="required"/>
+            <br><br>
+            Profession: <input type="text" name="Profession", placeholder="Enter Profession" required="required"/>
+            <br><br>
+            CURRENT_JOB_YRS: <input type="number" name="CURRENT_JOB_YRS", placeholder="Enter CURRENT_JOB_YRS" required="required"/>
+            <br><br>
+            CURRENT_HOUSE_YRS: <input type="number" name="CURRENT_HOUSE_YRS", placeholder="Enter CURRENT_HOUSE_YRS" required="required"/>
+            <br><br>
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>
