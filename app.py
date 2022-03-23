@@ -40,20 +40,16 @@ def predict():
     dfM['House_Ownership']=leHouse.transform(dfM['House_Ownership'])
     dfM['Car_Ownership']=leCar.transform(dfM['Car_Ownership'])
     dfM['Profession']=leProfession.transform(dfM['Profession'])
-    # list_of_encoded=[Income, Age,Experience,MarriedSingle, House_Ownership,Car_Ownership, Profession, CURRENT_JOB_YRS, CURRENT_HOUSE_YRS]
-    # df['Married/Single']=leMarried.transform(df['Married/Single'])
-    # df['House_Ownership']=leHouse.transform(df['House_Ownership'])
-    # df['Car_Ownership']=leCar.transform(df['Car_Ownership'])
-    # df['Profession']=leProfession.transform(df['Profession'])
-    # features = [np.array(dfM)]
+
     prediction = model.predict(dfM)
     if (prediction[0]==0):
         res="Approved", prediction[0]
 
     if (prediction[0]==1):
         res="Rejected", prediction[0]
-    # res= dfM['Car_Ownership'][0]
-    return render_template("index.html", prediction_text = res)
+
+    # return render_template("index.html", prediction_text = res)
+    return jsonify(res)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True)     
