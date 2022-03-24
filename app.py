@@ -15,10 +15,6 @@ df['House_Ownership']=leHouse.fit(df['House_Ownership'])
 df['Car_Ownership']=leCar.fit(df['Car_Ownership'])
 df['Profession']=leProfession.fit(df['Profession'])
 
-# df['Married/Single']=leMarried.transform(df['Married/Single'])
-# df['House_Ownership']=leHouse.transform(df['House_Ownership'])
-# df['Car_Ownership']=leCar.transform(df['Car_Ownership'])
-# df['Profession']=leProfession.transform(df['Profession'])
 
 # Create flask app
 app = Flask(__name__)
@@ -51,8 +47,8 @@ def predict():
         res= {
             "Status":"Rejected"
         }
-    # return render_template("index.html", prediction_text = res)
-    return jsonify(res)
+    return render_template("index.html", prediction_text = res)
+    # return jsonify(res)
 
 if __name__ == "__main__":
     app.run(debug=True)     
