@@ -3,6 +3,7 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 from flask import Flask, request, jsonify, render_template
 import pickle
+from flask_cors import CORS
 
 df=pd.read_csv("Training Data.csv")
 leMarried= LabelEncoder()
@@ -18,6 +19,7 @@ df['Profession']=leProfession.fit(df['Profession'])
 
 # Create flask app
 app = Flask(__name__)
+CORS(app)
 model = pickle.load(open("m1.pkl", "rb"))
 
 @app.route("/")
@@ -30,6 +32,7 @@ def predict():
     # df['Income'], df['Age'],df['Experience'],df['Married/Single'], df['House_Ownership'],df['Car_Ownership'], df['Profession'], df['CURRENT_JOB_YRS'], df['CURRENT_HOUSE_YRS']=int_features
     Income, Age,Experience,MarriedSingle, House_Ownership,Car_Ownership, Profession, CURRENT_JOB_YRS, CURRENT_HOUSE_YRS=int_features
     data = {'Income':[Income],'Age':[Age],'Experience':[Experience],'Married/Single':[MarriedSingle], 'House_Ownership':[House_Ownership], 'Car_Ownership':[Car_Ownership], 'Profession':[Profession],'CURRENT_JOB_YRS':[CURRENT_JOB_YRS],'CURRENT_HOUSE_YRS':[CURRENT_HOUSE_YRS]}
+    print(data)
     # Create the pandas DataFrame
     dfM = pd.DataFrame(data)
     dfM['Married/Single']=leMarried.transform(dfM['Married/Single'])
