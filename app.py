@@ -3,6 +3,7 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 from flask import Flask, request, jsonify, render_template
 import pickle
+from flask_cors import CORS
 
 df=pd.read_csv("Training Data.csv")
 leMarried= LabelEncoder()
@@ -15,13 +16,11 @@ df['House_Ownership']=leHouse.fit(df['House_Ownership'])
 df['Car_Ownership']=leCar.fit(df['Car_Ownership'])
 df['Profession']=leProfession.fit(df['Profession'])
 
-# df['Married/Single']=leMarried.transform(df['Married/Single'])
-# df['House_Ownership']=leHouse.transform(df['House_Ownership'])
-# df['Car_Ownership']=leCar.transform(df['Car_Ownership'])
-# df['Profession']=leProfession.transform(df['Profession'])
+
 
 # Create flask app
 app = Flask(__name__)
+CORS(app)
 model = pickle.load(open("m1.pkl", "rb"))
 
 @app.route("/")
@@ -31,7 +30,7 @@ def Home():
 @app.route("/predict", methods = ["POST"])
 def predict():
     int_features = [x for x in request.form.values()]
-    # df['Income'], df['Age'],df['Experience'],df['Married/Single'], df['House_Ownership'],df['Car_Ownership'], df['Profession'], df['CURRENT_JOB_YRS'], df['CURRENT_HOUSE_YRS']=int_features
+
     Income, Age,Experience,MarriedSingle, House_Ownership,Car_Ownership, Profession, CURRENT_JOB_YRS, CURRENT_HOUSE_YRS=int_features
     data = {'Income':[Income],'Age':[Age],'Experience':[Experience],'Married/Single':[MarriedSingle], 'House_Ownership':[House_Ownership], 'Car_Ownership':[Car_Ownership], 'Profession':[Profession],'CURRENT_JOB_YRS':[CURRENT_JOB_YRS],'CURRENT_HOUSE_YRS':[CURRENT_HOUSE_YRS]}
     # Create the pandas DataFrame
