@@ -39,7 +39,7 @@ def predict():
     MarriedSingle = data1['MarriedSingle']
     House_Ownership = data1['House_Ownership']
     Car_Ownership =data1['Car_Ownership']
-    Profession = data1['Profoession']
+    Profession = data1['Profession']
     CURRENT_JOB_YRS =data1['CURRENT_JOB_YRS']
     CURRENT_HOUSE_YRS = data1['CURRENT_HOUSE_YRS']
     # df['Income'], df['Age'],df['Experience'],df['Married/Single'], df['House_Ownership'],df['Car_Ownership'], df['Profession'], df['CURRENT_JOB_YRS'], df['CURRENT_HOUSE_YRS']=int_features
