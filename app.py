@@ -3,6 +3,7 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 from flask import Flask, request, jsonify, render_template
 import pickle
+import json
 from flask_cors import CORS
 
 df=pd.read_csv("Training Data.csv")
@@ -17,7 +18,6 @@ df['Car_Ownership']=leCar.fit(df['Car_Ownership'])
 df['Profession']=leProfession.fit(df['Profession'])
 
 
-
 # Create flask app
 app = Flask(__name__)
 CORS(app)
@@ -29,10 +29,23 @@ def Home():
 
 @app.route("/predict", methods = ["POST"])
 def predict():
+    
+    data1 = json.loads(request.data)
+    # print(data1,flush=True)
     int_features = [x for x in request.form.values()]
-
-    Income, Age,Experience,MarriedSingle, House_Ownership,Car_Ownership, Profession, CURRENT_JOB_YRS, CURRENT_HOUSE_YRS=int_features
+    Income = data1['Income']
+    Age = data1['Age']
+    Experience = data1['Experience']
+    MarriedSingle = data1['MarriedSingle']
+    House_Ownership = data1['House_Ownership']
+    Car_Ownership =data1['Car_Ownership']
+    Profession = data1['Profession']
+    CURRENT_JOB_YRS =data1['CURRENT_JOB_YRS']
+    CURRENT_HOUSE_YRS = data1['CURRENT_HOUSE_YRS']
+    # df['Income'], df['Age'],df['Experience'],df['Married/Single'], df['House_Ownership'],df['Car_Ownership'], df['Profession'], df['CURRENT_JOB_YRS'], df['CURRENT_HOUSE_YRS']=int_features
+    #Income, Age,Experience,MarriedSingle, House_Ownership,Car_Ownership, Profession, CURRENT_JOB_YRS, CURRENT_HOUSE_YRS=int_features
     data = {'Income':[Income],'Age':[Age],'Experience':[Experience],'Married/Single':[MarriedSingle], 'House_Ownership':[House_Ownership], 'Car_Ownership':[Car_Ownership], 'Profession':[Profession],'CURRENT_JOB_YRS':[CURRENT_JOB_YRS],'CURRENT_HOUSE_YRS':[CURRENT_HOUSE_YRS]}
+    print(data,flush=True)
     # Create the pandas DataFrame
     dfM = pd.DataFrame(data)
     dfM['Married/Single']=leMarried.transform(dfM['Married/Single'])
@@ -50,7 +63,7 @@ def predict():
         res= {
             "Status":"Rejected"
         }
-    # return render_template("index.html", prediction_text = res)
+#     return render_template("index.html", prediction_text = res)
     return jsonify(res)
 
 if __name__ == "__main__":
