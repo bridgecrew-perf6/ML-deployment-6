@@ -34,7 +34,7 @@ def predict():
     Age = request.data.Age
     Experience = request.data.Experience
     MarriedSingle = request.data.MarriedSingle
-    House_Ownership request.data.House_Ownership
+    House_Ownership = request.data.House_Ownership
     Car_Ownership =request.data.Car_Ownership
     Profession = request.data.Profoession
     CURRENT_JOB_YRS =request.data.CURRENT_JOB_YRS
