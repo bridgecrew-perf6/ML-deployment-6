@@ -28,6 +28,7 @@ def Home():
 
 @app.route("/predict", methods = ["POST"])
 def predict():
+    print(request.data,flush=True)
     int_features = [x for x in request.form.values()]
     # df['Income'], df['Age'],df['Experience'],df['Married/Single'], df['House_Ownership'],df['Car_Ownership'], df['Profession'], df['CURRENT_JOB_YRS'], df['CURRENT_HOUSE_YRS']=int_features
     Income, Age,Experience,MarriedSingle, House_Ownership,Car_Ownership, Profession, CURRENT_JOB_YRS, CURRENT_HOUSE_YRS=int_features
