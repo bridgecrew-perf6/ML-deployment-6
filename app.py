@@ -47,7 +47,7 @@ def predict():
     data = {'Income':[Income],'Age':[Age],'Experience':[Experience],'Married/Single':[MarriedSingle], 'House_Ownership':[House_Ownership], 'Car_Ownership':[Car_Ownership], 'Profession':[Profession],'CURRENT_JOB_YRS':[CURRENT_JOB_YRS],'CURRENT_HOUSE_YRS':[CURRENT_HOUSE_YRS]}
     print(data,flush=True)
     # Create the pandas DataFrame
-    dfM = pd.DataFrame(data1)
+    dfM = pd.DataFrame(data)
     dfM['Married/Single']=leMarried.transform(dfM['Married/Single'])
     dfM['House_Ownership']=leHouse.transform(dfM['House_Ownership'])
     dfM['Car_Ownership']=leCar.transform(dfM['Car_Ownership'])
@@ -63,8 +63,8 @@ def predict():
         res= {
             "Status":"Rejected"
         }
-    return render_template("index.html", prediction_text = res)
-    # return jsonify(res)
+#     return render_template("index.html", prediction_text = res)
+    return jsonify(res)
 
 if __name__ == "__main__":
     app.run(debug=True)     
