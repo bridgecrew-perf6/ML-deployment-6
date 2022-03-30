@@ -28,12 +28,21 @@ def Home():
 
 @app.route("/predict", methods = ["POST"])
 def predict():
-    print(request.data,flush=True)
+#     print(request.data,flush=True)
     int_features = [x for x in request.form.values()]
+    Income = request.data.Income
+    Age = request.data.Age
+    Experience = request.data.Experience
+    MarriedSingle = request.data.MarriedSingle
+    House_Ownership request.data.House_Ownership
+    Car_Ownership =request.data.Car_Ownership
+    Profession = request.data.Profoession
+    CURRENT_JOB_YRS =request.data.CURRENT_JOB_YRS
+    CURRENT_HOUSE_YRS = request.data.CURRENT_HOUSE_YRS
     # df['Income'], df['Age'],df['Experience'],df['Married/Single'], df['House_Ownership'],df['Car_Ownership'], df['Profession'], df['CURRENT_JOB_YRS'], df['CURRENT_HOUSE_YRS']=int_features
-    Income, Age,Experience,MarriedSingle, House_Ownership,Car_Ownership, Profession, CURRENT_JOB_YRS, CURRENT_HOUSE_YRS=int_features
+    #Income, Age,Experience,MarriedSingle, House_Ownership,Car_Ownership, Profession, CURRENT_JOB_YRS, CURRENT_HOUSE_YRS=int_features
     data = {'Income':[Income],'Age':[Age],'Experience':[Experience],'Married/Single':[MarriedSingle], 'House_Ownership':[House_Ownership], 'Car_Ownership':[Car_Ownership], 'Profession':[Profession],'CURRENT_JOB_YRS':[CURRENT_JOB_YRS],'CURRENT_HOUSE_YRS':[CURRENT_HOUSE_YRS]}
-    print(data)
+    print(data,flush=True)
     # Create the pandas DataFrame
     dfM = pd.DataFrame(data)
     dfM['Married/Single']=leMarried.transform(dfM['Married/Single'])
